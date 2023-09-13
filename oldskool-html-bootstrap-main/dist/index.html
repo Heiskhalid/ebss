@@ -48,6 +48,7 @@
 
     <!-- Page Title -->
     <title>Express Business Support</title>
+    <script src="https://www.youtube.com/iframe_api"></script>
 
 </head>
 
@@ -974,18 +975,51 @@
             
             </div>
 <!-- video -->
-            <div style="padding:56.25% 0 0 0;position:relative;"><iframe
+            <div id="video1" style="padding:56.25% 0 0 0;position:relative;"><iframe
         src="https://player.vimeo.com/video/862981686?h=fc949ecb30&autoplay=1&loop=1&title=0&byline=0&portrait=0&controls=0&muted=1"
         style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0"
         allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>
                 <script src="https://player.vimeo.com/api/player.js"></script>
                 <br>
-                <div style="padding:56.25% 0 0 0;position:relative;"><iframe
+                <!-- <div id="video2" style="padding:56.25% 0 0 0;position:relative;"><iframe
         src="https://player.vimeo.com/video/863368485?h=1c4d78c517&autoplay=1&loop=1&title=0&byline=0&portrait=0&controls=0&muted=1"
        style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0"
         allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>
                 <script src="https://player.vimeo.com/api/player.js"></script>
-            
+                -->
+               <br>
+               
+                <iframe id="youtube-iframe video2" width="100%" height="515" src="https://www.youtube.com/embed/LrZCjHjYHcU?autoplay=1&controls=0&showinfo=0&rel=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+               <script>
+                    // Get the iframe element
+                    var iframe = document.getElementById('youtube-iframe');
+                    var player;
+                  
+                    // When the iframe is ready, initialize the player
+                    iframe.addEventListener('load', function() {
+                      player = new YT.Player(iframe, {
+                        events: {
+                          'onReady': onPlayerReady,
+                          'onStateChange': onPlayerStateChange
+                        }
+                      });
+                    });
+                  
+                    // When the player is ready, start playback and set up looping
+                    function onPlayerReady(event) {
+                      event.target.playVideo();
+                      event.target.setLoop(true);
+                    }
+                  
+                    // Listen for state changes and restart the video when it ends (looping)
+                    function onPlayerStateChange(event) {
+                      if (event.data === YT.PlayerState.ENDED) {
+                        event.target.playVideo();
+                      }
+                    }
+                  </script>
+                  
 
                         <!-- /Page Content -->
         </section>
@@ -1047,6 +1081,29 @@
   >
   </script>
   
+
+  <script src="https://player.vimeo.com/api/player.js"></script>
+<script>
+  // Initialize Vimeo Players
+  var player1 = new Vimeo.Player('video1', { id: '862981686' });
+  var player2 = new Vimeo.Player('video2', { id: '863368485' });
+  // Add more players as needed
+
+// Function to play all videos
+function playVideos() {
+  Promise.all([
+    player1.play(),
+    player2.play()
+    // Add more videos to play here if needed
+  ]).then(function() {
+    // All videos have started playing
+  }).catch(function(error) {
+    // Handle any errors
+    console.error('Error playing videos:', error);
+  });
+}
+  window.addEventListener('load', playVideos);
+</script>
 </body>
 
 </html>
