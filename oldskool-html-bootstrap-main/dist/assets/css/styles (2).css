@@ -1,0 +1,29 @@
+body{
+    padding-left: 5%;
+}
+
+.mount li{
+    font-size: 25px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    margin-top: 0px;
+}
+
+
+
+.mount p{
+    font-size: 15px;
+   
+}
+
+.lined{
+    text-decoration: underline;
+    font-size: 19px;
+}
+
+
+@media (max-width: 1200px){
+   .opacity{
+    opacity: 1!important;
+   }
+}
